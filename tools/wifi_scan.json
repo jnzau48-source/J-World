@@ -1,0 +1,206 @@
+[
+  {
+    "bssid": "9a:45:58:72:a7:3e",
+    "frequency_mhz": 5765,
+    "rssi": -87,
+    "ssid": "",
+    "timestamp": 1815251617,
+    "channel_bandwidth_mhz": "40",
+    "center_frequency_mhz": 5755,
+    "capabilities": "[WPA2-PSK-CCMP-128][RSN-PSK-CCMP-128][ESS]"
+  },
+  {
+    "bssid": "5a:d0:61:fc:d6:2c",
+    "frequency_mhz": 2442,
+    "rssi": -95,
+    "ssid": "WIFI@5KSH UNLIMITED",
+    "timestamp": 2056423613,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[ESS]"
+  },
+  {
+    "bssid": "a4:c6:4f:20:da:b9",
+    "frequency_mhz": 2412,
+    "rssi": -70,
+    "ssid": "SKYVIEW CINEMA",
+    "timestamp": 2056423588,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[WPA-PSK-TKIP+CCMP-128][WPA2-PSK-TKIP+CCMP-128][RSN-PSK-TKIP+CCMP-128][ESS][WPS]"
+  },
+  {
+    "bssid": "8a:d7:9a:0d:b2:3b",
+    "frequency_mhz": 5765,
+    "rssi": -89,
+    "ssid": "",
+    "timestamp": 1815251621,
+    "channel_bandwidth_mhz": "40",
+    "center_frequency_mhz": 5755,
+    "capabilities": "[WPA2-PSK-CCMP-128][RSN-PSK-CCMP-128][ESS]"
+  },
+  {
+    "bssid": "68:d7:9a:0c:b2:3b",
+    "frequency_mhz": 2462,
+    "rssi": -89,
+    "ssid": "UNLIMITED Wi~Fi",
+    "timestamp": 2056423617,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[ESS]"
+  },
+  {
+    "bssid": "9a:45:58:71:a7:3e",
+    "frequency_mhz": 2437,
+    "rssi": -96,
+    "ssid": "",
+    "timestamp": 657859069,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[WPA2-PSK-CCMP-128][RSN-PSK-CCMP-128][ESS]"
+  },
+  {
+    "bssid": "8a:45:58:71:e6:a1",
+    "frequency_mhz": 2412,
+    "rssi": -97,
+    "ssid": "",
+    "timestamp": 1815251571,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[WPA2-PSK-CCMP-128][RSN-PSK-CCMP-128][ESS]"
+  },
+  {
+    "bssid": "8a:d7:9a:0c:b2:3b",
+    "frequency_mhz": 2462,
+    "rssi": -89,
+    "ssid": "",
+    "timestamp": 1815251598,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[WPA2-PSK-CCMP-128][RSN-PSK-CCMP-128][ESS]"
+  },
+  {
+    "bssid": "bc:3f:8f:cc:be:0c",
+    "frequency_mhz": 2457,
+    "rssi": -91,
+    "ssid": "FRIDAH'S CYBER",
+    "timestamp": 1815251594,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[WPA-PSK-TKIP+CCMP-128][WPA2-PSK-TKIP+CCMP-128][RSN-PSK-TKIP+CCMP-128][ESS]"
+  },
+  {
+    "bssid": "9c:ce:88:5e:8e:f3",
+    "frequency_mhz": 2462,
+    "rssi": -91,
+    "ssid": "SKYSPOT WIFI",
+    "timestamp": 1815251602,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[ESS]"
+  },
+  {
+    "bssid": "7a:45:58:72:a7:3e",
+    "frequency_mhz": 5765,
+    "rssi": -91,
+    "ssid": "UNLIMITED Wi~Fi",
+    "timestamp": 2056423622,
+    "channel_bandwidth_mhz": "40",
+    "center_frequency_mhz": 5755,
+    "capabilities": "[ESS]"
+  },
+  {
+    "bssid": "5c:64:7a:af:9b:b0",
+    "frequency_mhz": 2432,
+    "rssi": -96,
+    "ssid": "HOMESPOT-WIFI-@20 BOB",
+    "timestamp": 1815251583,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[ESS]"
+  },
+  {
+    "bssid": "7a:d7:9a:0c:b2:3b",
+    "frequency_mhz": 2462,
+    "rssi": -89,
+    "ssid": "",
+    "timestamp": 2056423602,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[WPA2-PSK-CCMP-128][RSN-PSK-CCMP-128][ESS]"
+  },
+  {
+    "bssid": "78:45:58:71:e6:a1",
+    "frequency_mhz": 2412,
+    "rssi": -98,
+    "ssid": "UNLIMITED Wi~Fi",
+    "timestamp": 1815251576,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[ESS]"
+  },
+  {
+    "bssid": "34:6a:c2:c2:78:d8",
+    "frequency_mhz": 2432,
+    "rssi": -86,
+    "ssid": "Blessedjoy",
+    "timestamp": 1815251579,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[WPA-PSK-TKIP+CCMP-128][WPA2-PSK-TKIP+CCMP-128][RSN-PSK-TKIP+CCMP-128][ESS]"
+  },
+  {
+    "bssid": "8a:45:58:72:a7:3e",
+    "frequency_mhz": 5765,
+    "rssi": -92,
+    "ssid": "",
+    "timestamp": 2056423626,
+    "channel_bandwidth_mhz": "40",
+    "center_frequency_mhz": 5755,
+    "capabilities": "[WPA2-PSK-CCMP-128][RSN-PSK-CCMP-128][ESS]"
+  },
+  {
+    "bssid": "6a:d7:9a:0c:b2:3b",
+    "frequency_mhz": 2462,
+    "rssi": -86,
+    "ssid": "",
+    "timestamp": 1815251590,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[WPA2-PSK-CCMP-128][RSN-PSK-CCMP-128][ESS]"
+  },
+  {
+    "bssid": "ca:c9:a3:93:46:c6",
+    "frequency_mhz": 2462,
+    "rssi": -98,
+    "ssid": "Q0025274503751",
+    "timestamp": 1815251606,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[WPA2-PSK-CCMP-128+TKIP][RSN-PSK-CCMP-128+TKIP][WPA-PSK-CCMP-128+TKIP][ESS]"
+  },
+  {
+    "bssid": "aa:45:58:72:a7:3e",
+    "frequency_mhz": 5765,
+    "rssi": -86,
+    "ssid": "",
+    "timestamp": 1815251625,
+    "channel_bandwidth_mhz": "40",
+    "center_frequency_mhz": 5755,
+    "capabilities": "[WPA2-PSK-CCMP-128][RSN-PSK-CCMP-128][ESS]"
+  },
+  {
+    "bssid": "78:45:58:71:a7:3e",
+    "frequency_mhz": 2437,
+    "rssi": -91,
+    "ssid": "UNLIMITED Wi~Fi",
+    "timestamp": 1815251587,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[ESS]"
+  },
+  {
+    "bssid": "24:16:6d:63:b1:ae",
+    "frequency_mhz": 2412,
+    "rssi": -94,
+    "ssid": "Elonjoan",
+    "timestamp": 2056423606,
+    "channel_bandwidth_mhz": "20",
+    "capabilities": "[WPA2-PSK-CCMP-128][RSN-PSK-CCMP-128][ESS]"
+  },
+  {
+    "bssid": "e8:68:19:06:83:2a",
+    "frequency_mhz": 2412,
+    "rssi": -89,
+    "ssid": "FRIRIDA",
+    "timestamp": 2056423609,
+    "channel_bandwidth_mhz": "40",
+    "center_frequency_mhz": 2422,
+    "capabilities": "[WPA-PSK-TKIP+CCMP-128][WPA2-PSK-TKIP+CCMP-128][RSN-PSK-TKIP+CCMP-128][ESS]"
+  }
+]

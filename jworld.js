@@ -19,6 +19,7 @@ function setUpdateStatus(status){
 
 // NumInfo
 async function lookupNumber(){
+ HEAD
   const number=document.getElementById("phoneInput").value;
   const resultBox=document.getElementById("resultBox");
   const historyBox=document.getElementById("numinfo-history");
@@ -26,6 +27,33 @@ async function lookupNumber(){
   resultBox.innerHTML="Scanning... 🔍"; setUpdateStatus("⚡ NumInfo Scanning");
   try{
     const res = await fetch(`https://api.apilayer.com/number_verification/validate?number=${number}`, { method:"GET", headers:{"apikey":"YOUR_API_KEY"} });
+
+  let number = document.getElementById("phoneInput").value.trim();
+  const resultBox = document.getElementById("resultBox");
+  const historyBox = document.getElementById("numinfo-history");
+
+  // Clean input
+  number = number.replace(/\s+/g, "");
+
+  // Auto-format Kenyan numbers
+  if(number.startsWith("07")){
+    number = "+254" + number.slice(1);
+  }
+
+  if(!number.startsWith("+")){
+    resultBox.innerHTML = "❌ Use international format e.g. +2547...";
+    return;
+  }
+
+  resultBox.innerHTML = "📡 Scanning...";
+  setUpdateStatus("🌐 Trying online lookup...");
+
+  try {
+    const res = await fetch(`https://api.apilayer.com/number_verification/validate?number=${number}`, {
+      method: "GET",
+      headers: { "apikey": "xtZKyVTfAB2iSNvmC4AuNE2s84WPUJT5" }
+    })
+ 9ecffba (Removed exposed API key)
     const data = await res.json();
     if(!data.valid){ resultBox.innerHTML="❌ Invalid number"; setUpdateStatus("✅ Idle"); return; }
     const output=`

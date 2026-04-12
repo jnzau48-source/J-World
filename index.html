@@ -1,59 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>J-World Ultimate OS</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J-World</title>
+  <link rel="stylesheet" href="jworld.css">
 </head>
 <body>
 
-<!-- Top Status Bar -->
-<div id="status-bar">
-  <span id="sys-time">⏰ --:--:--</span>
-  <span id="active-tools">🛠️ Active Tools: 0</span>
-  <span id="wifi-count">📡 WiFi Networks: 0</span>
-  <span id="update-status" class="heartbeat">⚡ Idle</span>
-</div>
-
-<canvas id="bg-canvas"></canvas>
-
-<!-- Loader -->
+<!-- LOADER -->
 <div id="loader">
-  <h1>⚡ Booting J-World OS...</h1>
-  <p>Loading tools...</p>
+  <div class="overlay">
+    <h1>J-World</h1>
+  </div>
 </div>
 
+<!-- MAIN CONTENT -->
 <div id="tools" style="display:none;">
 
-  <!-- NumInfo Tool -->
-  <div class="tool-card" id="numinfo-tool">
-    <div class="tool-header" onclick="togglePanel('numinfo-panel')">
-      <h2>📱 NumInfo</h2>
-      <span class="status-dot" id="numinfo-status"></span>
-    </div>
-    <div id="numinfo-panel" class="tool-body">
-      <p class="tool-desc">Enter a number to get intelligence: country, carrier, line type, location.</p>
-      <input type="text" id="phoneInput" placeholder="+2547XXXXXXXX">
-      <button onclick="lookupNumber()">Scan Number</button>
-      <div id="resultBox" class="result-box"></div>
-      <div id="numinfo-history" class="history-box"></div>
-    </div>
+  <!-- NUMINFO -->
+  <div class="tool-card">
+    <h2>NumInfo</h2>
+    <input type="text" id="phoneInput" placeholder="+254XXXXXXXXX">
+    <button onclick="lookupNumber()">Scan</button>
+    <div id="resultBox"></div>
   </div>
 
-  <!-- WiFi Radar Tool -->
-  <div class="tool-card" id="wifi-tool">
-    <div class="tool-header" onclick="togglePanel('wifi-panel-body')">
-      <h2>📡 WiFi Radar</h2>
-      <span class="status-dot" id="wifi-status"></span>
+  <!-- WIFI RADAR -->
+  <section class="section">
+    <h2>WiFi System Setup</h2>
+    <div id="wifi-radar" class="wifi-panel">
+      Scanning WiFi...
     </div>
-    <div id="wifi-panel-body" class="tool-body">
-      <p class="tool-desc">Available networks sorted by signal strength. 🔒 = secured, ⚠️ = open.</p>
-      <button onclick="refreshWiFi()">Refresh Now</button>
-      <div id="wifi-radar" class="wifi-panel"></div>
-      <div id="wifi-history" class="history-box"></div>
+    <button onclick="refreshWiFi()" class="wifi-btn">Scan Now</button>
+  </section>
+
+  <!-- MINI TERMUX -->
+  <section class="section">
+    <h2>Mini-Termux</h2>
+    <div class="console">
+      <pre id="console-output">Welcome to Mini-Termux! Type a command below.</pre>
+      <input id="console-input" placeholder="Type command">
     </div>
-  </div>
+
+    <div class="cmd-buttons">
+      <button onclick="runCmd('ls')">ls</button>
+      <button onclick="runCmd('pwd')">pwd</button>
+      <button onclick="runCmd('whoami')">whoami</button>
+      <button onclick="runCmd('date')">date</button>
+      <button onclick="runCmd('clear')">clear</button>
+    </div>
+  </section>
+
+  <!-- JUICE MESSAGES -->
+  <section class="section juice-section">
+    <h2>Juice Messages</h2>
+    <ul id="quote-list"></ul>
+    <button id="play-music">Play Song</button>
+  </section>
+
+  <!-- MORE INFO -->
+  <section class="section">
+    <h2>More Info</h2>
+    <div class="card">
+      <a href="https://www.instagram.com/channel/AbaF0KolrxmpCaCT/?igsh=a3Fpa2lobmlnODFo" target="_blank">Instagram</a>
+      <a href="https://chat.whatsapp.com/GpcxVdDBfuCFQ4CYIBDelm?mode=gi_t" target="_blank">WhatsApp Group</a>
+      <a href="tel:+254704813812">Call Me</a>
+    </div>
+  </section>
 
 </div>
 

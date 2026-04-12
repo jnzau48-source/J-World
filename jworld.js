@@ -1,121 +1,135 @@
-// Loader
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  const tools = document.getElementById('tools');
-  setTimeout(()=>{ loader.style.display='none'; tools.style.display='grid'; },1200);
-});
+// LOADER
+window.onload = () => {
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("tools").style.display = "block";
+  }, 2000);
+};
 
-// Toggle panel
-function togglePanel(id){
-  const panel=document.getElementById(id);
-  panel.style.display=(panel.style.display==='none')?'block':'none';
+// ================= NUMINFO =================
+async function lookupNumber() {
+    const number = document.getElementById("numberInput").value;
+    const box = document.getElementById("result");
+
+    if (!number) {
+        box.innerHTML = "❌ Enter a number";
+        return;
+    }
+
+    try {
+        box.innerHTML = "⏳ Checking...";
+
+        const res = await fetch(
+            "http://127.0.0.1:3000/api/numinfo?number=" + number
+        );
+
+        const data = await res.json();
+
+        box.innerHTML = `
+            ✅ Valid: ${data.valid}<br>
+            🌍 Country: ${data.country_name}<br>
+            📡 Carrier: ${data.carrier || "N/A"}<br>
+            📱 Type: ${data.line_type}
+        `;
+
+    } catch (err) {
+        console.log(err);
+        box.innerHTML = "❌ API Error";
+    }
 }
+// ================= MINI TERMUX =================
+const output = document.getElementById("console-output");
+const input = document.getElementById("console-input");
 
-// Update top-bar heartbeat
-function setUpdateStatus(status){
-  const el=document.getElementById('update-status');
-  el.innerText=status;
-}
+const cmdResponses = {
+  ls: "Documents Downloads Music",
+  pwd: "/home/jworld",
+  whoami: "user",
+  date: new Date().toString()
+};
 
-// NumInfo
-async function lookupNumber(){
- HEAD
-  const number=document.getElementById("phoneInput").value;
-  const resultBox=document.getElementById("resultBox");
-  const historyBox=document.getElementById("numinfo-history");
-  if(!number){ resultBox.innerHTML="⚠️ Enter a number first!"; return; }
-  resultBox.innerHTML="Scanning... 🔍"; setUpdateStatus("⚡ NumInfo Scanning");
-  try{
-    const res = await fetch(`https://api.apilayer.com/number_verification/validate?number=${number}`, { method:"GET", headers:{"apikey":"YOUR_API_KEY"} });
-
-  let number = document.getElementById("phoneInput").value.trim();
-  const resultBox = document.getElementById("resultBox");
-  const historyBox = document.getElementById("numinfo-history");
-
-  // Clean input
-  number = number.replace(/\s+/g, "");
-
-  // Auto-format Kenyan numbers
-  if(number.startsWith("07")){
-    number = "+254" + number.slice(1);
-  }
-
-  if(!number.startsWith("+")){
-    resultBox.innerHTML = "❌ Use international format e.g. +2547...";
+function runCmd(cmd) {
+  if (cmd === "clear") {
+    output.textContent = "";
     return;
   }
+  output.textContent += `\n$ ${cmd}\n${cmdResponses[cmd] || ""}`;
+}
 
-  resultBox.innerHTML = "📡 Scanning...";
-  setUpdateStatus("🌐 Trying online lookup...");
+if (input) {
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const cmd = input.value.trim();
+      runCmd(cmd);
+      input.value = "";
+    }
+  });
+}
+
+// ================= JUICE MESSAGES =================
+const quotes = [
+  "Legends never die.",
+  "I still see your shadows in my room.",
+  "Pain makes the music real.",
+  "We’re perfectly imperfect.",
+  "Lost but alive.",
+  "Dreams feel real at night.",
+  "Broken but breathing.",
+  "Music heals everything.",
+  "Love fades, scars stay.",
+  "Vibes over everything."
+];
+
+const list = document.getElementById("quote-list");
+quotes.forEach(q => {
+  const li = document.createElement("li");
+  li.textContent = q;
+  list.appendChild(li);
+});
+
+// MUSIC TOGGLE
+let audio;
+const btn = document.getElementById("play-music");
+btn.onclick = () => {
+  if (!audio) {
+    audio = new Audio("juiceworld_wishingwell.mp3");
+    audio.loop = true;
+    audio.play();
+    btn.textContent = "Pause Song";
+  } else {
+    audio.pause();
+    audio = null;
+    btn.textContent = "Play Song";
+  }
+};
+
+// ================= WIFI SCANNER LOGIC =================
+async function refreshWiFi() {
+  const wifiBox = document.getElementById('wifi-radar');
+
+  wifiBox.innerHTML = "🔍 Scanning WiFi...";
 
   try {
-    const res = await fetch(`https://api.apilayer.com/number_verification/validate?number=${number}`, {
-      method: "GET",
-      headers: { "apikey": "xtZKyVTfAB2iSNvmC4AuNE2s84WPUJT5" }
-    })
- 9ecffba (Removed exposed API key)
-    const data = await res.json();
-    if(!data.valid){ resultBox.innerHTML="❌ Invalid number"; setUpdateStatus("✅ Idle"); return; }
-    const output=`
-      <p>🌍 <strong>Country:</strong> ${data.country_name}</p>
-      <p>📡 <strong>Carrier:</strong> ${data.carrier||"N/A"}</p>
-      <p>📱 <strong>Line Type:</strong> ${data.line_type}</p>
-      <p>📍 <strong>Location:</strong> ${data.location||"Unknown"}</p>
-      <p>🌐 <strong>Country Code:</strong> +${data.country_code}</p>`;
-    resultBox.innerHTML=output;
-    historyBox.innerHTML+=`<p>[${new Date().toLocaleTimeString()}] ${number} scanned</p>`;
-    setUpdateStatus("✅ Idle");
-  }catch(err){ resultBox.innerHTML="❌ Error fetching data"; console.error(err); setUpdateStatus("❌ Error"); }
-}
+    const response = await fetch('tools/wifi_scan.json');
+    const networks = await response.json();
 
-// WiFi
-async function refreshWiFi(){
-  const historyBox=document.getElementById("wifi-history");
-  setUpdateStatus("⚡ WiFi Refreshing");
-  try{
-    const res=await fetch('tools/wifi_scan.json');
-    const networks=await res.json();
-    networks.sort((a,b)=>b.rssi-a.rssi);
-    let out='';
-    networks.forEach(net=>{
-      let name=net.ssid||'Hidden Network';
-      let sec=net.capabilities.includes('WPA')||net.capabilities.includes('WEP')?'🔒':'⚠️';
-      let bars=Math.min(5, Math.max(1, Math.floor((net.rssi+100)/10)));
-      let barDisplay='▂▄▆█'.repeat(bars);
-      out+=`<div class="panel">📶 ${name} | ${barDisplay} | ${sec}</div>`;
+    networks.sort((a, b) => b.rssi - a.rssi);
+
+    let output = '';
+    networks.forEach(net => {
+      let name = net.ssid || 'Hidden Network';
+      let security = net.capabilities.includes('WPA') || net.capabilities.includes('WEP') ? '🔒' : '⚠️';
+      let bars = Math.min(5, Math.max(1, Math.floor((net.rssi + 100) / 10)));
+      let barDisplay = '▂▄▆█'.repeat(bars);
+      output += `<div class="panel"><div>📶 ${name}</div><div>${barDisplay} ${security}</div></div>`;
     });
-    document.getElementById('wifi-radar').innerHTML=out;
-    historyBox.innerHTML+=`<p>[${new Date().toLocaleTimeString()}] WiFi refreshed</p>`;
-    setUpdateStatus("✅ Idle");
-  }catch(err){ document.getElementById('wifi-radar').innerHTML='❌ Error reading WiFi data'; console.error(err); setUpdateStatus("❌ Error"); }
+
+    wifiBox.innerHTML = output;
+  } catch (err) {
+    wifiBox.innerHTML = '❌ Error reading WiFi data';
+    console.error(err);
+  }
 }
-setInterval(refreshWiFi,15000);
 
-// Top bar updates
-function updateSystemTime(){ document.getElementById('sys-time').innerText=`⏰ ${new Date().toLocaleTimeString()}`; }
-setInterval(updateSystemTime,1000);
-updateSystemTime();
-
-function updateActiveTools(){
-  const tools=document.querySelectorAll('.tool-body');
-  let count=0;
-  tools.forEach(tool=>{ if(tool.style.display!=='none') count++; });
-  document.getElementById('active-tools').innerText=`🛠️ Active Tools: ${count}`;
-}
-setInterval(updateActiveTools,500);
-
-function updateWiFiCount(){
-  const wifiPanel=document.getElementById('wifi-radar');
-  const count=wifiPanel.querySelectorAll('.panel').length;
-  document.getElementById('wifi-count').innerText=`📡 WiFi Networks: ${count}`;
-}
-setInterval(updateWiFiCount,2000);
-
-// Matrix Background
-const canvas=document.getElementById('bg-canvas'); const ctx=canvas.getContext('2d');
-let W=canvas.width=window.innerWidth, H=canvas.height=window.innerHeight;
-const cols=Math.floor(W/20)+1; const ypos=new Array(cols).fill(0);
-function matrix(){ ctx.fillStyle='rgba(0,0,0,0.05)'; ctx.fillRect(0,0,W,H); ctx.fillStyle='#00ffcc'; ctx.font='15px monospace';
-for(let i=0;i<ypos.length;i++){ const text=String.fromCharCode(33+Math.random()*94); ctx.fillText(text,i*20,ypos[i]*20); if(ypos[i]*20>H && Math.random()>0.975) ypos[i]=0; ypos[i]++; } }
-setInterval(matrix,50);
-window.addEventListener('resize',()=>{W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight;});
+// Auto-refresh every 15 seconds
+setInterval(refreshWiFi, 15000);
